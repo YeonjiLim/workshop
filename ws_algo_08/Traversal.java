@@ -7,7 +7,6 @@ import java.util.Stack;
 
 public class Traversal {
 	
-	public static final int[] pip = {0, 1, 2}; // pre, in, post
 	public static final String sign = "+-/*";
 	public Node root;
 	public int idx = 0;
