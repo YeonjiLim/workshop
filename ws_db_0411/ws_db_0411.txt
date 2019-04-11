@@ -1,3 +1,13 @@
+CREATE TABLE `book` (
+  `isbn` char(8) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `author` varchar(10) NOT NULL,
+  `publisher` varchar(15) NOT NULL,
+  `price` int(11) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`isbn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
 INSERT INTO book(isbn,title,author,publisher,price,description) values ('123-1-14','Java와 coffee','diana','자바닷컴',8000,'삶의 즐거움');
 INSERT INTO book(isbn,title,author,publisher,price,description) values ('555-23-2','AI와 미래','김현주','미래닷컴',20000,'');
 INSERT INTO book(isbn,title,author,publisher,price,description) values ('123-2-15','Java와 놀기','김태희','자바닷컴',22000,'Java 정복');
