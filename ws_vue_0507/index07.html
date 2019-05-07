@@ -28,11 +28,11 @@
 <div id='app'>
 <div class='headtitle'><h2 v-html='currenttitle'></h2></div>
 <div class='search_box'>
-<a href='#' @click='showlist(1)'>ì¬ìì¶ê°</a> | 
-<a href='#' @click='showlist(3)'>ì´ë¦ì¼ë¡ ì°¾ê¸°</a> |
-<a href='#' @click='showlist(2)'>ìì´ëë¡ ì°¾ê¸°</a> |
-<a href='#' @click='showlist(0)'>ëª¨ë ì¬ì ë³´ê¸°</a> |
-<a href='#' @click='showlist(5)'>ë¶ìë³ ì¬ì ë³´ê¸°</a>
+<a href='#' @click='showlist(1)'>사원추가</a> | 
+<a href='#' @click='showlist(3)'>이름으로 찾기</a> |
+<a href='#' @click='showlist(2)'>아이디로 찾기</a> |
+<a href='#' @click='showlist(0)'>모든사원 보기</a> |
+<a href='#' @click='showlist(5)'>부서별 사원 보기</a>
 </div>
 
 <component v-bind:is = "currentview"></component>  
@@ -44,13 +44,13 @@
 <col width="10%"><col width="20%">
 <col width="20%"><col width="20%"><col width="10%"><col width="10%">
 <tr>
-  <th>ì¬ì ìì´ë</th>
-  <th>ì¬ìëª</th>
-  <th>ë¶ì</th>
-  <th>ì§ì±</th>
-  <th>ì°ë´</th>
-  <th>í´ì¬</th>
-  <th>ìì </th>
+  <th>사원 아이디</th>
+  <th>사원명</th>
+  <th>부서</th>
+  <th>직책</th>
+  <th>연봉</th>
+  <th>퇴사</th>
+  <th>수정</th>
 </tr>
 <tr v-for="emp in info" class = "nicecolor">
   <td v-html="emp.id" @click="show_detail(emp.id)"></td>
@@ -58,8 +58,8 @@
   <td v-html="emp.dept_name"></td>
   <td v-html="emp.title"></td>
   <td>{{ emp.salary | salarydecimal }}</td>
-  <td class='button'  @click="delete_emp(emp.id)"><input type="button" class='blue' value='í´ì¬'/></td>
-  <td class='button'  @click="update_emp(emp.id)"><input type="button" class='blue' value='ìì '/></td>
+  <td class='button'  @click="delete_emp(emp.id)"><input type="button" class='blue' value='퇴사'/></td>
+  <td class='button'  @click="update_emp(emp.id)"><input type="button" class='blue' value='수정'/></td>
 </tr>
 </table>
 </div>
@@ -78,11 +78,11 @@
 <col width="10%"><col width="20%">
 <col width="20%"><col width="20%"><col width="10%">
 <tr>
-  <th>ì¬ì ìì´ë</th>
-  <th>ì¬ìëª</th>
-  <th>ë¶ì</th>
-  <th>ì§ì±</th>
-  <th>ì°ë´</th>
+  <th>사원 아이디</th>
+  <th>사원명</th>
+  <th>부서</th>
+  <th>직책</th>
+  <th>연봉</th>
 </tr>
  <tr>
 <td v-html="cemp.id"></td>
@@ -97,17 +97,17 @@
 <script type="text/x-template" id="namehrmtemplate">
 <div>
 <div class='search_box'>
-ì´ë¦ì¼ë¡  ì°¾ê¸° : <input type="text" name='name' v-model="cname" @keyup='searchname' v-cloak/>
+이름으로  찾기 : <input type="text" name='name' v-model="cname" @keyup='searchname' v-cloak/>
 </div>
 <table class='list_table'>
 <col width="10%"><col width="20%">
 <col width="20%"><col width="20%"><col width="10%">
 <tr>
-  <th>ì¬ì ìì´ë</th>
-  <th>ì¬ìëª</th>
-  <th>ë¶ì</th>
-  <th>ì§ì±</th>
-  <th>ì°ë´</th>
+  <th>사원 아이디</th>
+  <th>사원명</th>
+  <th>부서</th>
+  <th>직책</th>
+  <th>연봉</th>
 </tr>
  <tr>
 <tr v-for="emp in cemps" class = "nicecolor">
@@ -130,20 +130,20 @@
 		<col style="width:70%;" />							
 </colgroup>	
 <tr>
-<th>ì´ë¦</th>
-<td><input data-msg="ì´ë¦" type="text" name="name" id="_name" size="30" v-model="cname"/></td>
+<th>이름</th>
+<td><input data-msg="이름" type="text" name="name" id="_name" size="30" v-model="cname"/></td>
 </tr>
 <tr>
-<th>ì´ë©ì¼</th>
-<td><input data-msg="ì´ë©ì¼" type="text" name="mailid"  id="_mailid" size="20" v-model="cmailid" /></td>
+<th>이메일</th>
+<td><input data-msg="이메일" type="text" name="mailid"  id="_mailid" size="20" v-model="cmailid" /></td>
 </tr>
 <tr>
-<th>ê³ ì©ì¼</th>
-<td><input data-msg="ê³ ì©ì¼" type="date" name="start_date"  id="_start_date" size="30" v-model="cstart_date" /></td>
+<th>고용일</th>
+<td><input data-msg="고용일" type="date" name="start_date"  id="_start_date" size="30" v-model="cstart_date" /></td>
 </tr>
 <tr>
 <tr>
-<th>ê´ë¦¬ì</th>
+<th>관리자</th>
 <td>
  <select name='manager_id' v-model="cmanager_id">
   <option v-for="emp in info" v-bind:value="emp.id">
@@ -153,7 +153,7 @@
 </td>
 </tr>
 <tr>
-<th>ì§ì±</th>
+<th>직책</th>
 <td>
  <select name='title' v-model="ctitle">
   <option v-for="emp in titls" v-bind:value="emp.title">
@@ -163,7 +163,7 @@
 </td>
 </tr>
 <tr>
-<th>ë¶ì</th>
+<th>부서</th>
 <td>
  <select name='dept_id' v-model="cdept_id">
   <option v-for="dept in deps" v-bind:value="dept.dept_id">
@@ -173,16 +173,16 @@
 </td>
 </tr>
 <tr>
-<th>ìê¸</th>
-<td><input data-msg="ìê¸" type="number" name="salary"  id="_salary" size="30" min="0" v-model="csalary"/></td>
+<th>월급</th>
+<td><input data-msg="월급" type="number" name="salary"  id="_salary" size="30" min="0" v-model="csalary"/></td>
 </tr>
 <tr>
-<th>ì»¤ë¯¸ì</th>
-<td><input data-msg="ì»¤ë¯¸ì" type="number" name="commission_pct"  id="_commission_pct" size="30" min="0" v-model="ccommission_pct" /></td>
+<th>커미션</th>
+<td><input data-msg="커미션" type="number" name="commission_pct"  id="_commission_pct" size="30" min="0" v-model="ccommission_pct" /></td>
 </tr>
 <tr>
 <td colspan="2" style="height:50px; text-align:center;">
-<button type="submit" name="button">ì¬ìì¶ê°</button></td>
+<button type="submit" name="button">사원추가</button></td>
 </tr>
 </table>
 </form>
@@ -195,11 +195,11 @@
 <col width="10%"><col width="20%">
 <col width="20%"><col width="20%"><col width="10%">
 <tr>
-  <th>ì¬ì ìì´ë</th>
-  <th>ì¬ìëª</th>
-  <th>ë¶ì</th>
-  <th>ì§ì±</th>
-  <th>ì°ë´</th>
+  <th>사원 아이디</th>
+  <th>사원명</th>
+  <th>부서</th>
+  <th>직책</th>
+  <th>연봉</th>
 </tr>
 <tr>
   <td v-html="cemp.id"></td>
@@ -210,17 +210,17 @@
 </tr>  
 </table>
 <div class='search_box'>
-<span style='color:blue;' v-html="cemp.name"></span>ì ë¶í ì§ìë¤
+<span style='color:blue;' v-html="cemp.name"></span>의 부하 직원들
 </div>
 <table class='list_table'>
 <col width="10%"><col width="20%">
 <col width="20%"><col width="20%"><col width="10%">
 <tr>
-  <th>ì¬ì ìì´ë</th>
-  <th>ì¬ìëª</th>
-  <th>ë¶ì</th>
-  <th>ì§ì±</th>
-  <th>ì°ë´</th>
+  <th>사원 아이디</th>
+  <th>사원명</th>
+  <th>부서</th>
+  <th>직책</th>
+  <th>연봉</th>
 </tr>
 <tr v-for="emp in info" class = "nicecolor">
   <td v-html="emp.id" @click="show_detail(emp.id)"></td>
@@ -242,7 +242,7 @@
   <template  v-for="(depcount, index) in depcounts">
     <g :transform="transform(0, index)" @mouseover="showdept(depcount.dept_id)">
     <rect :width='100*depcount.count' height='29'></rect>
-    <text :x='100*depcount.count' y='15' dy='.35em' >{{depcount.dept_id}}:{{depcount.name}}:{{depcount.count}}ëª</text>
+    <text :x='100*depcount.count' y='15' dy='.35em' >{{depcount.dept_id}}:{{depcount.name}}:{{depcount.count}}명</text>
     </g>		
    </template>	
   </svg>
@@ -251,16 +251,16 @@
 
 </table>
 <div v-if='showme()'>
-<div class='search_box'>ë¶ìë³ ì§ì</div>
+<div class='search_box'>부서별 직원</div>
 <table class='list_table'>
 <col width="10%"><col width="20%">
 <col width="20%"><col width="20%"><col width="10%">
 <tr>
-  <th>ì¬ì ìì´ë</th>
-  <th>ì¬ìëª</th>
-  <th>ë¶ì</th>
-  <th>ì§ì±</th>
-  <th>ì°ë´</th>
+  <th>사원 아이디</th>
+  <th>사원명</th>
+  <th>부서</th>
+  <th>직책</th>
+  <th>연봉</th>
 </tr>
 <tr v-for="emp in info" class = "nicecolor">
   <td v-html="emp.id"></td>
@@ -283,20 +283,20 @@
 		<col style="width:70%;" />							
 </colgroup>	
 <tr>
-<th>ì´ë¦</th>
-<td><input data-msg="ì´ë¦" type="text" name="name" id="_name" size="30" v-model="cemp.name"/></td>
+<th>이름</th>
+<td><input data-msg="이름" type="text" name="name" id="_name" size="30" v-model="cemp.name"/></td>
 </tr>
 <tr>
-<th>ì´ë©ì¼</th>
-<td><input data-msg="ì´ë©ì¼" type="text" name="mailid"  id="_mailid" size="20" v-model="cemp.mailid" /></td>
+<th>이메일</th>
+<td><input data-msg="이메일" type="text" name="mailid"  id="_mailid" size="20" v-model="cemp.mailid" /></td>
 </tr>
 <tr>
-<th>ê³ ì©ì¼</th>
-<td><input data-msg="ê³ ì©ì¼" type="date" name="start_date"  id="_start_date" size="30" v-model="cemp.start_date" /></td>
+<th>고용일</th>
+<td><input data-msg="고용일" type="date" name="start_date"  id="_start_date" size="30" v-model="cemp.start_date" /></td>
 </tr>
 <tr>
 <tr>
-<th>ê´ë¦¬ì</th>
+<th>관리자</th>
 <td>
  <select name='manager_id' v-model="cemp.manager_id">
   <option v-for="emp in info" v-bind:value="emp.id">
@@ -306,7 +306,7 @@
 </td>
 </tr>
 <tr>
-<th>ì§ì±</th>
+<th>직책</th>
 <td>
  <select name='title' v-model="cemp.title">
   <option v-for="emp in titls" v-bind:value="emp.title">
@@ -316,7 +316,7 @@
 </td>
 </tr>
 <tr>
-<th>ë¶ì</th>
+<th>부서</th>
 <td>
  <select name='dept_id' v-model="cemp.dept_id">
   <option v-for="dept in deps" v-bind:value="dept.dept_id">
@@ -326,16 +326,16 @@
 </td>
 </tr>
 <tr>
-<th>ìê¸</th>
-<td><input data-msg="ìê¸" type="number" name="salary"  id="_salary" size="30" min="0" v-model="cemp.salary"/></td>
+<th>월급</th>
+<td><input data-msg="월급" type="number" name="salary"  id="_salary" size="30" min="0" v-model="cemp.salary"/></td>
 </tr>
 <tr>
-<th>ì»¤ë¯¸ì</th>
-<td><input data-msg="ì»¤ë¯¸ì" type="number" name="commission_pct"  id="_commission_pct" size="30" min="0" v-model="cemp.commission_pct" /></td>
+<th>커미션</th>
+<td><input data-msg="커미션" type="number" name="commission_pct"  id="_commission_pct" size="30" min="0" v-model="cemp.commission_pct" /></td>
 </tr>
 <tr>
 <td colspan="2" style="height:50px; text-align:center;">
-<button type="submit" name="button">ì ë³´ìì </button></td>
+<button type="submit" name="button">정보수정</button></td>
 </tr>
 </table>
 </form>
@@ -355,14 +355,14 @@ var listhrm = Vue.component('listhrm',{
       },
       methods:{
     	  show_detail:function(employeeid){
-    		  alert(employeeid+"ìì¸ë³´ê¸°");
+    		  alert(employeeid+"상세보기");
     		  App.empid=employeeid;
     		  App.currentview = 'detailhrm';
     		  App.showlist(4);
     		} ,
     		delete_emp:function(employeeid){
     			if(employeeid==1){
-    				alert("ì¬ì¥ëì í´ì¬í  ì ììµëë¤.");return ;
+    				alert("사장님은 퇴사할 수 없습니다.");return ;
     			}
     		  alert(employeeid);
     		  App.empid=employeeid;
@@ -371,12 +371,12 @@ var listhrm = Vue.component('listhrm',{
     		    .then(function(response){
     			    //.then(response => (this.deps = response.data))
     		    	  if(response.data.state=='succ'){
-    		    		  alert(response.data.name+"ì´ ì¤íëììµëë¤.");
+    		    		  alert(response.data.name+"이 실행되었습니다.");
     		    		  location.href='./index05.html';
     		    		  //App.currentview = 'listhrm';
     		    		  //App.showlist(0);
     		    	  }else{
-    		    		  alert(response.data.name+"ì ì¤í¨íììµëë¤.");
+    		    		  alert(response.data.name+"에 실패하였습니다.");
     		    		  location.href='./index05.html';
     		    		  //App.currentview = 'listhrm';
     		    		  //App.showlist(0);
@@ -389,7 +389,7 @@ var listhrm = Vue.component('listhrm',{
     		    .finally(() => this.loading = false);
     		} ,
     		update_emp:function(employeeid){
-    		  alert(employeeid+" ìì íê¸°");
+    		  alert(employeeid+" 수정하기");
       		  App.empid=employeeid;
       		  App.currentview = 'updatehrm';
       		  App.showlist(6);
@@ -588,13 +588,13 @@ var addhrm = Vue.component('addhrm',{
 	  },
  	 methods: {
  		addEmployee() {
- 		  if(this.cname==''){ alert('ìì´ëë¥¼ ìë ¥íì¸ì.'); return ;}
- 		  if(this.cdept_id==''){ alert('ë¶ìë¥¼ ì ííì¸ì.'); return ;}
- 		  if(this.cmailid==''){ alert('ì´ë©ì¼ì ì ííì¸ì.'); return ;}
- 		  if(this.cmanager_id==''){ alert('ê´ë¦¬ìë¥¼ ì ííì¸ì.'); return ;}
-		  if(this.csalary==''){ alert('ìê¸ì ìë ¥íì¸ì.'); return ;}
-		  if(this.cstart_date==''){ alert('ìì¬ì¼ì ì ííì¸ì.'); return ;}
-		  if(this.ctitle==''){ alert('ì§ì±ì ì ííì¸ì.'); return ;}
+ 		  if(this.cname==''){ alert('아이디를 입력하세요.'); return ;}
+ 		  if(this.cdept_id==''){ alert('부서를 선택하세요.'); return ;}
+ 		  if(this.cmailid==''){ alert('이메일을 선택하세요.'); return ;}
+ 		  if(this.cmanager_id==''){ alert('관리자를 선택하세요.'); return ;}
+		  if(this.csalary==''){ alert('월급을 입력하세요.'); return ;}
+		  if(this.cstart_date==''){ alert('입사일을 선택하세요.'); return ;}
+		  if(this.ctitle==''){ alert('직책을 선택하세요.'); return ;}
 		  
 		  axios.post('http://localhost:8197/ssafyvue/api/addEmployee', {
 	    	  commission_pct: this.ccommission_pct,
@@ -609,12 +609,12 @@ var addhrm = Vue.component('addhrm',{
 	      ).then(function(response){
 			    //.then(response => (this.deps = response.data))
 	    	  if(response.data.state=='succ'){
-	    		  alert(response.data.name+"ì´ ì¤íëììµëë¤.");
+	    		  alert(response.data.name+"이 실행되었습니다.");
 	    		  location.href='./index06.html';
 	    		  //App.currentview = 'listhrm';
 	    		  //App.showlist(0);
 	    	  }else{
-	    		  alert(response.data.name+"ì ì¤í¨íììµëë¤.");
+	    		  alert(response.data.name+"에 실패하였습니다.");
 	    		  location.href='./index06.html';
 	    		  //App.currentview = 'listhrm';
 	    		  //App.showlist(0);
@@ -731,12 +731,12 @@ var updatehrm = Vue.component('updatehrm',{
   	  },
   	 methods: {
   		updateEmployee() {
-  		  if(this.cemp.name==''){ alert('ìì´ëë¥¼ ìë ¥íì¸ì.'); return ;}
-  		  if(this.cemp.dept_id==''){ alert('ë¶ìë¥¼ ì ííì¸ì.'); return ;}
-  		  if(this.cemp.mailid==''){ alert('ì´ë©ì¼ì ì ííì¸ì.'); return ;}
- 		  if(this.cemp.salary==''){ alert('ìê¸ì ìë ¥íì¸ì.'); return ;}
- 		  if(this.cemp.start_date==''){ alert('ìì¬ì¼ì ì ííì¸ì.'); return ;}
- 		  if(this.cemp.title==''){ alert('ì§ì±ì ì ííì¸ì.'); return ;}
+  		  if(this.cemp.name==''){ alert('아이디를 입력하세요.'); return ;}
+  		  if(this.cemp.dept_id==''){ alert('부서를 선택하세요.'); return ;}
+  		  if(this.cemp.mailid==''){ alert('이메일을 선택하세요.'); return ;}
+ 		  if(this.cemp.salary==''){ alert('월급을 입력하세요.'); return ;}
+ 		  if(this.cemp.start_date==''){ alert('입사일을 선택하세요.'); return ;}
+ 		  if(this.cemp.title==''){ alert('직책을 선택하세요.'); return ;}
  		  
  		  axios.post('http://localhost:8197/ssafyvue/api/updateEmployee/', {
  			  id: this.cemp.id,
@@ -752,12 +752,12 @@ var updatehrm = Vue.component('updatehrm',{
  	      ).then(function(response){
  			    //.then(response => (this.deps = response.data))
  	    	  if(response.data.state=='succ'){
- 	    		  alert(response.data.name+"ì´ ì¤íëììµëë¤.");
+ 	    		  alert(response.data.name+"이 실행되었습니다.");
  	    		  location.href='./index07.html';
  	    		  //App.currentview = 'listhrm';
  	    		  //App.showlist(0);
  	    	  }else{
- 	    		  alert(response.data.name+"ì ì¤í¨íììµëë¤.");
+ 	    		  alert(response.data.name+"에 실패하였습니다.");
  	    		  location.href='./index07.html';
  	    		  //App.currentview = 'listhrm';
  	    		  //App.showlist(0);
